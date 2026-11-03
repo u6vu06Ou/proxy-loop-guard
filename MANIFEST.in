@@ -1,0 +1,3 @@
+include README.zh-TW.md
+recursive-include tests *.py
+recursive-include examples *.py

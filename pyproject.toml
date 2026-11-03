@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proxy-loop-guard"
+version = "0.1.0"
+description = "Detect repeated tool calls and stalled LLM agent loops before the next model request"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "u6vu06Ou"}]
+keywords = ["llm", "agents", "loop-detection", "proxy", "tool-calling"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/u6vu06Ou/proxy-loop-guard"
+Issues = "https://github.com/u6vu06Ou/proxy-loop-guard/issues"
+
+[tool.setuptools.packages.find]
+include = ["proxy_loop_guard*"]
