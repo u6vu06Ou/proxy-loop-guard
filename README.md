@@ -1,8 +1,10 @@
 # Proxy Loop Guard
 
+[English](README.md) · [繁體中文](README.zh-TW.md)
+
 **Catch an LLM agent repeating itself before paying for the next model call.**
 
-[繁體中文](README.zh-TW.md) · [MIT license](LICENSE)
+[MIT license](LICENSE)
 
 Proxy Loop Guard is a small Python library extracted from a working LLM proxy.
 It inspects existing chat/tool history, adds a warning when an agent appears
@@ -14,6 +16,21 @@ There is **no measured token-saving percentage** for this standalone release.
 This is a library for proxy and agent developers, not a Claude Code plugin or a
 complete proxy server. It accepts OpenAI-style chat messages with tool calls.
 Normalize other message formats before using it.
+
+## Overview
+
+```mermaid
+flowchart TD
+    accTitle: Check before the next model request
+    accDescr: Normal history is allowed, warning history gets a reminder, and a hard threshold raises an exception the caller must handle.
+    A["Chat and tool history"] --> B{"Repetition threshold?"}
+    B -->|Below warning| C["Allow request"]
+    B -->|Warning| D["Add a warning when needed, then allow"]
+    B -->|Hard stop| E["Raise LoopDetected"]
+    E --> F["Caller skips the next upstream request"]
+```
+
+A hard stop only prevents the next model request if your caller handles the exception; it does not cancel a running tool.
 
 ## Try it in a minute
 
